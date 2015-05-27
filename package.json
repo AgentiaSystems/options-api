@@ -1,5 +1,5 @@
 {
-  "name": "agentia-options",
+  "name": "options-api",
   "version": "0.0.0",
   "description": "Option getter/setter/validator for Node.js modules and apps",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AgentiaSystems/agentia-options.git"
+    "url": "https://github.com/AgentiaSystems/options-api.git"
   },
   "keywords": [
     "option",
@@ -21,7 +21,20 @@
   "author": "Johnny Estilles <johnny.estilles@agentia.asia> (http://www.agentia.asia)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AgentiaSystems/agentia-options/issues"
+    "url": "https://github.com/AgentiaSystems/options-api/issues"
   },
-  "homepage": "https://github.com/AgentiaSystems/agentia-options"
+  "homepage": "https://github.com/AgentiaSystems/options-api",
+  "devDependencies": {
+    "eslint": "^0.21.2",
+    "istanbul": "^0.3.14",
+    "mocha": "^2.2.5",
+    "must": "^0.12.0"
+  },
+  "dependencies": {
+    "agentia-utilities": "^1.4.0",
+    "clone": "^1.0.2",
+    "express": "^4.12.4",
+    "merge-descriptors": "^1.0.0",
+    "mongoose": "^4.0.3"
+  }
 }
