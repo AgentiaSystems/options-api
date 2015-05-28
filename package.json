@@ -4,7 +4,9 @@
   "description": "Option getter/setter/validator for Node.js modules and apps",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "node_modules/mocha/bin/mocha",
+    "cover": "istanbul cover node_modules/.bin/_mocha -- --reporter dot",
+    "lint": "eslint index.js lib test"
   },
   "repository": {
     "type": "git",
@@ -25,13 +27,15 @@
   },
   "homepage": "https://github.com/AgentiaSystems/options-api",
   "devDependencies": {
+    "chai": "^2.3.0",
     "eslint": "^0.21.2",
     "istanbul": "^0.3.14",
     "mocha": "^2.2.5",
-    "must": "^0.12.0"
+    "sinon": "^1.14.1",
+    "sinon-chai": "^2.7.0"
   },
   "dependencies": {
-    "agentia-utilities": "^1.4.0",
+    "agentia-utilities": "^1.5.0",
     "clone": "^1.0.2",
     "express": "^4.12.4",
     "merge-descriptors": "^1.0.0",
