@@ -29,7 +29,7 @@ describe('api.enable()', function() {
 
     it('should throw an error when called with no arguments', function() {
       expect(this.api.enable.bind(this.api))
-        .to.throw(errors.InvalidArguments);
+        .to.throw(errors.MustBeString);
     });
 
     it('should throw an error when called with non-string key', function() {
