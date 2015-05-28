@@ -37,8 +37,6 @@
   "dependencies": {
     "agentia-utilities": "^1.5.0",
     "clone": "^1.0.2",
-    "express": "^4.12.4",
-    "merge-descriptors": "^1.0.0",
-    "mongoose": "^4.0.3"
+    "merge-descriptors": "^1.0.0"
   }
 }
