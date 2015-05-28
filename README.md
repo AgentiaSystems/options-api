@@ -1,5 +1,9 @@
 # ![logo][logo-url]
 
+[![Build Status][travis-image]][travis-url]
+[![Code Climate][gpa-badge]][codeclimate-url]
+[![Test Coverage][coverage-badge]][codeclimate-url]
+
 Option getter/setter/validator for Node.js modules and apps
 
 ## Installation
@@ -29,3 +33,10 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 [logo-url]: media/logo.png
 [agentia-url]: http://www.agentia.asia
 [keystone-url]: http://www.keystonejs.com
+
+[travis-image]: https://travis-ci.org/AgentiaSystems/options-api.svg?branch=master
+[travis-url]: https://travis-ci.org/AgentiaSystems/options-api
+
+[codeclimate-url]: https://codeclimate.com/github/AgentiaSystems/options-api
+[gpa-badge]: https://codeclimate.com/github/AgentiaSystems/options-api/badges/gpa.svg
+[coverage-badge]: https://codeclimate.com/github/AgentiaSystems/options-api/badges/coverage.svg
