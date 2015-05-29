@@ -1,14 +1,16 @@
 {
-  "name": "agentia-options",
-  "version": "0.0.0",
+  "name": "options-api",
+  "version": "1.0.0",
   "description": "Option getter/setter/validator for Node.js modules and apps",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "node_modules/mocha/bin/mocha",
+    "cover": "istanbul cover node_modules/.bin/_mocha -- --reporter dot",
+    "lint": "eslint index.js lib test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AgentiaSystems/agentia-options.git"
+    "url": "https://github.com/AgentiaSystems/options-api.git"
   },
   "keywords": [
     "option",
@@ -21,7 +23,20 @@
   "author": "Johnny Estilles <johnny.estilles@agentia.asia> (http://www.agentia.asia)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AgentiaSystems/agentia-options/issues"
+    "url": "https://github.com/AgentiaSystems/options-api/issues"
   },
-  "homepage": "https://github.com/AgentiaSystems/agentia-options"
+  "homepage": "https://github.com/AgentiaSystems/options-api",
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "eslint": "^0.21.2",
+    "istanbul": "^0.3.14",
+    "mocha": "^2.2.5",
+    "sinon": "^1.14.1",
+    "sinon-chai": "^2.7.0"
+  },
+  "dependencies": {
+    "agentia-utilities": "^1.5.0",
+    "clone": "^1.0.2",
+    "merge-descriptors": "^1.0.0"
+  }
 }
