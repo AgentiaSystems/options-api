@@ -146,7 +146,7 @@ validators | `object` | See `validators` above (under [Static API Parameters](#s
 <a name="examples"></a>
 ## Examples
 
-### .set()/.get()
+#### .set()/.get()
 ```js
 var optionsApi = require('options-api');
 var instance = optionsApi.create();
@@ -164,7 +164,7 @@ option1: value1
 option2: undefined
 ```
 
-### .unset()
+#### .unset()
 ```js
 var optionsApi = require('options-api');
 var instance = optionsApi.create();
@@ -181,7 +181,7 @@ Output:
 option1: undefined
 ```
 
-### .config()
+#### .config()
 ```js
 var optionsApi = require('options-api');
 var instance = optionsApi.create();
@@ -202,7 +202,7 @@ option1: value1
 opiion2: value2
 ```
 
-### .enable()/.disable()
+#### .enable()/.disable()
 ```js
 var optionsApi = require('options-api');
 var instance = optionsApi.create();
@@ -221,7 +221,7 @@ option1: true
 option2: false
 ```
 
-### .defaults()
+#### .defaults()
 ```js
 var optionsApi = require('options-api');
 var instance = optionsApi.create();
@@ -242,7 +242,7 @@ option1: value1
 opiion2: value2
 ```
 
-### .validators()
+#### .validators()
 ```js
 var optionsApi = require('options-api');
 var instance = optionsApi.create();
@@ -273,7 +273,7 @@ InvalidOption: "0" is not a valid value for the "option1" option
     at Object.set ...
 ```
 
-### .reset()
+#### .reset()
 ```js
 var optionsApi = require('options-api');
 var instance = optionsApi.create();
