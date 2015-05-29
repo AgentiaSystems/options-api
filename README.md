@@ -23,7 +23,7 @@ If I haven't bored you and you're still interested please read on.
 - [Usage](#usage)
 - [Static API](#static-api)
 - [Static API Parameters](#static-api-params)
-- [Isntance API](#instance-api)
+- [Instance API](#instance-api)
 - [Instance API Parameters](#instance-api-params)
 - [Unit Testing](#unit-testing)
 - [Attributions](#attributions)
