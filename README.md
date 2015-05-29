@@ -4,17 +4,11 @@
 [![Code Climate][gpa-badge]][codeclimate-url]
 [![Test Coverage][coverage-badge]][codeclimate-url]
 
-Many applications and modules maintain a dictionary of options available to consumers.
-I've frequently found myself adding this functionality to my code. So, I figured, why not just
-package it up in an npm module and share it with the world. I'm sure someone
-out there may find it useful. That when I decided to publish **options-api**.
+Many applications and modules maintain a dictionary of options available to consumers. I've frequently found myself adding this functionality to my code. So, I figured, why not just package it up in an npm module and share it with the world. I'm sure someone out there may find it useful. That when I decided to publish **options-api**.
 
-**options-api** allows you to easily set, get and optionally validate key/value
-pairs with a simply API, so that you can store/retreive your module's or application's
-configuration. It's a simple in-memory options store you can use standalone, mixin
-to an existing object, or attach to an existing class.
+**options-api** allows you to easily set, get and optionally validate key/value pairs with a simply API, so that you can store/retreive your module's or application's configuration. It's a simple in-memory options store you can use standalone, mix into an existing object, or attach to an existing class.
 
-I took inspiration from some awesome open-source projects like [KeystoneJS][keystone-url], [Grappling Hook][grappling-url], and [ExpressJS][express-url], so the api is friendly and intuitive.
+I took inspiration from some awesome open-source projects like [KeystoneJS][keystone-url] and [Grappling Hook][grappling-url] so the api is friendly and intuitive.
 
 If I haven't bored you and you're still interested please read on.
 
@@ -22,8 +16,9 @@ If I haven't bored you and you're still interested please read on.
 - [Usage](#usage)
 - [Static API](#static-api)
 - [Static API Parameters](#static-api-params)
-- [Instance API](#instance-api)
-- [Instance API Parameters](#instance-api-params)
+- [Core API](#core-api)
+- [Core API Parameters](#core-api-params)
+- [Examples](#examples)
 - [Unit Testing](#unit-testing)
 - [Attributions](#attributions)
 - [License](#license)
@@ -43,14 +38,15 @@ npm install --save options-api
 <a name="usage"></a>
 ## Usage
 
-**options-api** a number of static methods that will easily let in incorporate its
-functionality into your projects in a variety of circumstances.
+**options-api** a number of static methods that will easily let in incorporate its functionality into your projects in a variety of circumstances.
 
 1. Create a standalone instance
 
   ```js
   var optionsApi = require('options-api');
   var instance = optionsApi.create();
+
+  instance.set('option', 'value');
   ```
 
 2. Mix it into an existing object
@@ -60,24 +56,31 @@ functionality into your projects in a variety of circumstances.
   var obj = {};
 
   optionsApi.mixin(obj);
+  obj.set('option', 'value');
   ```
 
 3. Attach it to an existing class
 
   ```js
   var optionsApi = require('options-api');
-  var Clazz = function() {};
+  var Clazz = function() {
+    this.something = 'something else';
+  };
   Clazz.prototype.xxx = function() {};
   Clazz.prototype.yyy = function() {};
   Clazz.prototype.zzz = function() {};
 
   optionsApi.attach(Clazz);
+
+  var instance = new Clazz();
+  instance.set('option', 'value');
   ```
 
 [Back to Top](#top)
 
 <a name="static-api"></a>
 ## Static API
+The static API methods provide you with a means to incorporate **options-api** into your app or module.
 
 Method | Parameters | Description
 ------ | ---------- | -----------
@@ -88,7 +91,7 @@ Method | Parameters | Description
 [Back to Top](#top)
 
 <a name="static-api-params"></a>
-### Static API Parameters
+#### Static API Parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
@@ -99,8 +102,8 @@ class | `constructor`<br>`object` | Class, the prototype of which you would like
 
 [Back to Top](#top)
 
-<a name="instance-api"></a>
-## Instance API
+<a name="core-api"></a>
+## Core API
 
 Method | Parameters | Description
 ------ | ---------- | -----------
@@ -114,10 +117,23 @@ Method | Parameters | Description
 .validators() | `validators` | Specify option validators
 .reset() | n/a | Sets all options back to their configured defaults
 
+#### Instance methods are chainable
+With the obvious exception of the `.get()` (which returns the requested option value) all instance methods are chainable.
+
+For example, you can:
+
+```js
+var instance = optionsApi.create();
+instance
+  .defaults({ option1: 'default value' })
+  .validators({ option1: /^default/ })
+  .enable('option2');
+```
+
 [Back to Top](#top)
 
-<a name="instance-api-params"></a>
-### Instance API Parameters
+<a name="core-api-params"></a>
+#### Core API Parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
@@ -126,6 +142,162 @@ options | `object` | Object hash of key/value pairs representing multiple option
 value | `any` | Value to which to set the option
 defaults | `object` | See `defaults` above (under [Static API Parameters](#static-api-params))
 validators | `object` | See `validators` above (under [Static API Parameters](#static-api-params))
+
+<a name="examples"></a>
+## Examples
+
+### .set()/.get()
+```js
+var optionsApi = require('options-api');
+var instance = optionsApi.create();
+
+instance.set('option1', 'value1');
+
+console.log('option1:', instance.get('option1'));
+console.log('option2:', instance.get('option2'));
+```
+
+Output:
+
+```
+option1: value1
+option2: undefined
+```
+
+### .unset()
+```js
+var optionsApi = require('options-api');
+var instance = optionsApi.create();
+
+instance.set('option1', 'value1');
+instance.unset('option1');
+
+console.log('option1:', instance.get('option1'));
+```
+
+Output:
+
+```
+option1: undefined
+```
+
+### .config()
+```js
+var optionsApi = require('options-api');
+var instance = optionsApi.create();
+
+instance.config({
+  option1: 'value1',
+  option2: 'value2'
+});
+
+console.log('option1:', instance.get('option1'));
+console.log('option2:', instance.get('option2'));
+```
+
+Output:
+
+```
+option1: value1
+opiion2: value2
+```
+
+### .enable()/.disable()
+```js
+var optionsApi = require('options-api');
+var instance = optionsApi.create();
+
+instance.enable('option1');
+instance.disable('option2');
+
+console.log('option1:', instance.get('option1'));
+console.log('option2:', instance.get('option2'));
+```
+
+Output:
+
+```
+option1: true
+option2: false
+```
+
+### .defaults()
+```js
+var optionsApi = require('options-api');
+var instance = optionsApi.create();
+
+instance.defaults({
+  option1: 'value1',
+  option2: 'value2'
+});
+
+console.log('option1:', instance.get('option1'));
+console.log('option2:', instance.get('option2'));
+```
+
+Output:
+
+```
+option1: value1
+opiion2: value2
+```
+
+### .validators()
+```js
+var optionsApi = require('options-api');
+var instance = optionsApi.create();
+
+instance.validators({
+  option1: function(value) {
+    return typeof value === 'number' && value > 0;
+  },
+  option2: /\.*js$/
+});
+
+instance.set('option1', 1);
+instance.set('option2', 'file.js');
+
+console.log('option1:', instance.get('option1'));
+console.log('option2:', instance.get('option2'));
+
+instance.set('option1', 0);
+```
+
+Output:
+
+```
+option1: 1
+opiion2: file.js
+
+InvalidOption: "0" is not a valid value for the "option1" option
+    at Object.set ...
+```
+
+### .reset()
+```js
+var optionsApi = require('options-api');
+var instance = optionsApi.create();
+
+instance.defaults({
+  option1: 'default value1',
+  option2: 'default value2'
+});
+
+instance.set('option1', 'another value1');
+instance.set('option2', 'another value2');
+
+instance.reset();
+
+console.log('option1:', instance.get('option1'));
+console.log('option2:', instance.get('option2'));
+```
+
+Output:
+
+```
+option1: value1
+opiion2: value2
+```
 
 [Back to Top](#top)
 
