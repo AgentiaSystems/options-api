@@ -27,7 +27,7 @@ If I haven't bored you and you're still interested please read on.
 - [Instance API Parameters](#instance-api-params)
 - [Unit Testing](#unit-testing)
 - [Attributions](#attributions)
-- [License](#License)
+- [License](#license)
 
 <a name="installation"></a>
 ## Installation
@@ -85,8 +85,6 @@ Method | Parameters | Description
 .create() | `defauts`&nbsp;*(optional)*<br>`validators`&nbsp;*(optional)* | Creates a standalone instance of **options-api**
 .mixin() | `instance`<br>`defauts`&nbsp;*(optional)*<br>`validators`&nbsp;*(optional)* | Adds **options-api** functionality to an existing object
 .attach() | `class`<br>`defauts`&nbsp;*(optional)*<br>`validators`&nbsp;*(optional)* | Adds **option-api** functionality to the prototype of an existing class
-
-<a name="static-api-params"></a>
 
 [Back to Top](#top)
 
@@ -166,6 +164,8 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+[Back to Top](#top)
 
 [logo-url]: media/logo.png
 [agentia-url]: http://www.agentia.asia
