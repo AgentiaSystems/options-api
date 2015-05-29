@@ -84,9 +84,9 @@ The static API methods provide you with a means to incorporate **options-api** i
 
 Method | Parameters | Description
 ------ | ---------- | -----------
-.create() | `defauts`&nbsp;*(optional)*<br>`validators`&nbsp;*(optional)* | Creates a standalone instance of **options-api**
-.mixin() | `instance`<br>`defauts`&nbsp;*(optional)*<br>`validators`&nbsp;*(optional)* | Adds **options-api** functionality to an existing object
-.attach() | `class`<br>`defauts`&nbsp;*(optional)*<br>`validators`&nbsp;*(optional)* | Adds **option-api** functionality to the prototype of an existing class
+.create() | `defauts`&nbsp;*(optional)*<br>`validators`&nbsp;*(optional)* | Syntax: `.create([<defaults>[,<validators>]])`<br>Creates a standalone instance of **options-api**
+.mixin() | `instance`<br>`defauts`&nbsp;*(optional)*<br>`validators`&nbsp;*(optional)* | Syntax: `.mixin(<instance>[,<defaults>[,<validators>]])`<br>Adds **options-api** functionality to an existing object
+.attach() | `class`<br>`defauts`&nbsp;*(optional)*<br>`validators`&nbsp;*(optional)* | Syntax: `.attach(<class>[,<defaults>[,<validators>]])`<br>Adds **option-api** functionality to the prototype of an existing class
 
 [Back to Top](#top)
 
@@ -107,15 +107,15 @@ class | `constructor`<br>`object` | Class, the prototype of which you would like
 
 Method | Parameters | Description
 ------ | ---------- | -----------
-.set() | `option`<br>`value` | Set an options value
-.get() | `option` | Retrieve an options value
-.unset() | `option` | Remove an existing option
-.config() | `options` | Set multiple options
-.enable() | `option` | Set an option's value to `true`
-.disable() | `option` | Set an options's value to `false`
-.defaults() | `defaults`| Sets default values for options
-.validators() | `validators` | Specify option validators
-.reset() | n/a | Sets all options back to their configured defaults
+.set() | `option`<br>`value` | Syntax: `.set(<option>,<value>)`<br>Set an options value
+.get() | `option` | Syntax: `.get(<option>)`<br>Retrieve an options value
+.unset() | `option` | Syntax: `.unset(<option>)`<br>Remove an existing option
+.config() | `options` | Syntax: `.config(<options>)`<br>Set multiple options
+.enable() | `option` | Syntax: `.enable(<option>)`<br>Set an option's value to `true`
+.disable() | `option` | Syntax: `.disable(<option>)`<br>Set an options's value to `false`
+.defaults() | `defaults`| Syntax: `.defaults(<defaults>)`<br>Sets default values for options
+.validators() | `validators` | Syntax: `.validators(<validators>)`<br>Specify option validators
+.reset() | n/a | Syntax: `.reset()`<br>Sets all options back to their configured defaults
 
 #### Instance methods are chainable
 With the obvious exception of the `.get()` (which returns the requested option value) all instance methods are chainable.
