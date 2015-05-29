@@ -107,6 +107,7 @@ Method | Parameters | Description
 .set() | `option`<br>`value` | Set an options value
 .get() | `option` | Retrieve an options value
 .unset() | `option` | Remove an existing option
+.config() | `options` | Set multiple options
 .enable() | `option` | Set an option's value to `true`
 .disable() | `option` | Set an options's value to `false`
 .defaults() | `defaults`| Sets default values for options
@@ -121,6 +122,7 @@ Method | Parameters | Description
 Parameter | Type | Description
 --------- | ---- | -----------
 option | `string` | Option name
+options | `object` | Object hash of key/value pairs representing multiple options to set
 value | `any` | Value to which to set the option
 defaults | `object` | See `defaults` above (under [Static API Parameters](#static-api-params))
 validators | `object` | See `validators` above (under [Static API Parameters](#static-api-params))
