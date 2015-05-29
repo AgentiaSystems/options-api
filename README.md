@@ -1,11 +1,12 @@
+<a name="top"></a>
 # ![logo][logo-url]
 
 [![Build Status][travis-image]][travis-url]
 [![Code Climate][gpa-badge]][codeclimate-url]
 [![Test Coverage][coverage-badge]][codeclimate-url]
 
-I've frequently found myself reusing code that would allow me to set/get
-configuration options in my apps and modules. So, I figured, why not just
+Many applications and modules maintain a dictionary of options available to consumers.
+I've frequently found myself adding this functionality to my code. So, I figured, why not just
 package it up in an npm module and share it with the world. I'm sure someone
 out there may find it useful. That when I decided to publish **options-api**.
 
@@ -14,12 +15,21 @@ pairs with a simply API, so that you can store/retreive your module's or applica
 configuration. It's a simple in-memory options store you can use standalone, mixin
 to an existing object, or attach to an existing class.
 
-I took inspiration from existing open-source projects like [KeystoneJS][keystone-url]
-and [ExpressJS][express-url], so the api is friendly and intuitive.
+I took inspiration from some awesome open-source projects like [KeystoneJS][keystone-url], [Grappling Hook][grappling-url], and [ExpressJS][express-url], so the api is friendly and intuitive.
 
-If I haven't bored you and you're still interested, check out the usage and api
-docs below.
+If I haven't bored you and you're still interested please read on.
 
+- [Installation](#installation)
+- [Usage](#usage)
+- [Static API](#static-api)
+- [Static API Parameters](#static-api-params)
+- [Isntance API](#instance-api)
+- [Instance API Parameters](#instance-api-params)
+- [Unit Testing](#unit-testing)
+- [Attributions](#attributions)
+- [License](#License)
+
+<a name="installation"></a>
 ## Installation
 [![npm][npm-badge]][npm-url]
 
@@ -29,9 +39,13 @@ docs below.
 npm install --save options-api
 ```
 
+[Back to Top](#top)
+
+<a name="usage"></a>
 ## Usage
 
-Once you require the module, there are three ways you can use **options-api**.
+**options-api** a number of static methods that will easily let in incorporate its
+functionality into your projects in a variety of circumstances.
 
 1. Create a standalone instance
 
@@ -58,89 +72,65 @@ Once you require the module, there are three ways you can use **options-api**.
   Clazz.prototype.yyy = function() {};
   Clazz.prototype.zzz = function() {};
 
-  optionsApi.attach(obj);
+  optionsApi.attach(Clazz);
   ```
 
-## API
+[Back to Top](#top)
 
-This is what you can do with **options-api**
+<a name="static-api"></a>
+## Static API
 
-### .set()
-Sets the value of a option, which can later be retrieved with `.get()`
+Method | Parameters | Description
+------ | ---------- | -----------
+.create() | `defauts`&nbsp;*(optional)*<br>`validators`&nbsp;*(optional)* | Creates a standalone instance of **options-api**
+.mixin() | `instance`<br>`defauts`&nbsp;*(optional)*<br>`validators`&nbsp;*(optional)* | Adds **options-api** functionality to an existing object
+.attach() | `class`<br>`defauts`&nbsp;*(optional)*<br>`validators`&nbsp;*(optional)* | Adds **option-api** functionality to the prototype of an existing class
 
-```js
-instance.set('option', 'value');
-```
+<a name="static-api-params"></a>
 
-> The above example sets the value of `option` to `'value'`.
+[Back to Top](#top)
 
-### .get()
-Retrieves the value of an existing option.
+<a name="static-api-params"></a>
+### Static API Parameters
 
-```js
-var instance.get('option');
-```
+Parameter | Type | Description
+--------- | ---- | -----------
+defaults | `object` | Object hash of key/value pairs with default values for options, where the keys are the option names and values are the defaults.
+validators | `object` | Object has of key/value pairs, where the keys as the option names and the values are the validators.<br><br>Validators can be either a function (which takes teh value to be validated as an argument and return a boolean indication if the validation was successful) or a regular expression.
+instance | `object` | Object onto which you would like to add  **options-api** functionality
+class | `constructor`<br>`object` | Class, the prototype of which you would like  add  **options-api** functionality
 
-### .enable()
-Sets the value of the specified option to `true`.
+[Back to Top](#top)
 
-```js
-instance.enable('option');
-```
+<a name="instance-api"></a>
+## Instance API
 
-> The above example sets `option` to `true`.
+Method | Parameters | Description
+------ | ---------- | -----------
+.set() | `option`<br>`value` | Set an options value
+.get() | `option` | Retrieve an options value
+.enable() | `option` | Set an option's value to `true`
+.disable() | `option` | Set an options's value to `false`
+.defaults() | `defaults`| Sets default values for options
+.validators() | `validators` | Specify option validators
+.reset() | n/a | Sets all options back to their configured defaults
 
-### .disable()
-Sets the value of a specified options to `false`
+[Back to Top](#top)
 
-```js
-instance.disable('option');
-```
+<a name="instance-api-params"></a>
+### Instance API Parameters
 
-> The above example sets `option` to `false`.
+Parameter | Type | Description
+--------- | ---- | -----------
+option | `string` | Option name
+value | `any` | Value to which to set the option
+defaults | `object` | See `defaults` above (under [Static API Parameters](#static-api-params))
+validators | `object` | See `validators` above (under [Static API Parameters](#static-api-params))
 
-### .defaults()
-Used to set the initial/default values for set of options.
+[Back to Top](#top)
 
-```js
-instance.defaults({
-  option1: 'default1',
-  option2: 'default2'
-});
-```
-
-> The above example sets the default values of `option1` and `option2` to `'default1'` and `'default2'` respectively.
-
-### .validators()
-Use to specify validators for a set of options. Validators can be either a function or a regular expression.
-
-If the validator is a function it will take the value to be validated as it's sole argument, and must return a boolean indicating if the validation was successful.
-
-**options-api** will throw an `InvalidOption` error after an unsuccessful validation.
-
-> **NOTE:**
->
-> *Validators are only applied to values set with `.set()`. Initial/default values set with `.default()` are not validated.*
-
-```js
-instance.validators({
-  option1: function(value) {
-    return typeof value === 'string'
-  },
-  option2: /^default/
-});
-```
-
-> In the example above, values for `option1` are only valid if they are a `string`, and values for `option2` are only valid if the begin with the string `'default'`.
-
-### .reset()
-Resets all options to their default values.
-
-```js
-instance.reset();
-```
-
-## Testing
+<a name="unit-testing"></a>
+## Unit Testing
 To test **options-api** simply clone the repo and run `npm test`.
 
 ```
@@ -156,10 +146,15 @@ npm run lint
 npm run cover  // <-- report will be store in the `.coverage` folder
 ```
 
-## Attributions
-This work was partly inspired by  [KeystoneJS][keystone-url] (my thanks to [@JedWatson][jedwatson-url]) and
-[Grappling Hook][grappling-url] (my thanks to [@crynders][crynders-url]).
+[Back to Top](#top)
 
+<a name="attributions"></a>
+## Attributions
+This work was partly inspired by [KeystoneJS][keystone-url] (thank you [@JedWatson][jedwatson-url] et al) and [Grappling Hook][grappling-url] (thank you [@crynders][crynders-url]).
+
+[Back to Top](#top)
+
+<a name="license"></a>
 ## License
 **options-api** is free and open source under the MIT License.
 
