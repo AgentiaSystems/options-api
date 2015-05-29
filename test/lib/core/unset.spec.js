@@ -14,13 +14,13 @@ describe('api.unset()', function() {
       this.api = optionsApi.create();
     });
 
-    it('should remove an existing options', function() {
+    it('should remove an existing option', function() {
       this.api.set('key', 'value');
       this.api.unset('key');
       expect(this.api.get('key')).to.be.undefined;
     });
 
-    it('should remove an existing options', function() {
+    it('should silently return when remiving non-existing options', function() {
       expect(this.api.unset('invalid')).to.not.throw;
     });
 
