@@ -106,6 +106,7 @@ Method | Parameters | Description
 ------ | ---------- | -----------
 .set() | `option`<br>`value` | Set an options value
 .get() | `option` | Retrieve an options value
+.unset() | `option` | Remove an existing option
 .enable() | `option` | Set an option's value to `true`
 .disable() | `option` | Set an options's value to `false`
 .defaults() | `defaults`| Sets default values for options
