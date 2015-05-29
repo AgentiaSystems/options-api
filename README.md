@@ -1,5 +1,4 @@
-<a name="top"></a>
-# ![logo][logo-url]
+# <a name="top"></a>![logo][logo-url]
 
 [![Build Status][travis-image]][travis-url]
 [![Code Climate][gpa-badge]][codeclimate-url]
