@@ -21,6 +21,7 @@ If I haven't bored you and you're still interested please read on.
 - [Examples](#examples)
 - [Unit Testing](#unit-testing)
 - [Attributions](#attributions)
+- [Change Log](CHANGELOG.md)
 - [License](#license)
 
 <a name="installation"></a>
