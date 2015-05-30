@@ -19,11 +19,11 @@ describe('optionsApi.attach()', function() {
     optionsApi.mixin.restore();
   });
 
-  it('should attach optionsApi to an object\'s prototype', function() {
-    var obj = {};
-    optionsApi.attach(obj);
+  it('should attach optionsApi to a function\'s prototype', function() {
+    var fn = function() {};
+    optionsApi.attach(fn);
     expect(optionsApi.mixin).to.be.called.once;
-    expect(optionsApi.mixin).to.have.been.calledWith(obj.prototype);
+    expect(optionsApi.mixin).to.have.been.calledWith(fn.prototype);
   });
 
   it('should throw an error, when called with no arguments', function() {

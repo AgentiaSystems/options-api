@@ -1,6 +1,6 @@
 {
   "name": "options-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Option getter/setter/validator for Node.js modules and apps",
   "main": "index.js",
   "scripts": {
