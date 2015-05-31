@@ -106,17 +106,28 @@ class | `constructor`<br>`object` | Class, the prototype of which you would like
 <a name="core-api"></a>
 ## Core API
 
+### Core Methods
+
 Method | Parameters | Description
 ------ | ---------- | -----------
-.set() | `option`<br>`value` | Syntax: `.set(<option>,<value>)`<br>Set an options value
-.get() | `option` | Syntax: `.get(<option>)`<br>Retrieve an options value
-.unset() | `option` | Syntax: `.unset(<option>)`<br>Remove an existing option
-.config() | `options` | Syntax: `.config(<options>)`<br>Set multiple options
-.enable() | `option` | Syntax: `.enable(<option>)`<br>Set an option's value to `true`
-.disable() | `option` | Syntax: `.disable(<option>)`<br>Set an options's value to `false`
-.defaults() | `defaults`| Syntax: `.defaults(<defaults>)`<br>Sets default values for options
-.validators() | `validators` | Syntax: `.validators(<validators>)`<br>Specify option validators
-.reset() | n/a | Syntax: `.reset()`<br>Sets all options back to their configured defaults
+[.set()](#examples-set) | `option`<br>`value` | Syntax: `.set(<option>,<value>)`<br>Set an options value
+[.get()](#examples-get) | `option` | Syntax: `.get(<option>)`<br>Retrieve an options value
+[.unset()](#examples-unset) | `option` | Syntax: `.unset(<option>)`<br>Remove an existing option
+[.config()](#examples-config) | `options` | Syntax: `.config(<options>)`<br>Set multiple options
+[.enable()](#examples-enable) | `option` | Syntax: `.enable(<option>)`<br>Set an option's value to `true`
+[.disable()](#examples-disable) | `option` | Syntax: `.disable(<option>)`<br>Set an options's value to `false`
+[.defaults()](#examples-defaults) | `defaults`| Syntax: `.defaults(<defaults>)`<br>Sets default values for options
+[.validators()](#examples-validators) | `validators` | Syntax: `.validators(<validators>)`<br>Specify option validators
+[.reset()](#examples-reset) | n/a | Syntax: `.reset()`<br>Sets all options back to their configured defaults
+[.list()](#examples-list) | n/a | Syntax: `.list()`<br>Gets an object with all current options
+
+
+### Core Method Aliases
+
+Method | Parameters | Description
+------ | ---------- | -----------
+[.add()](#examples-add) | `option`<br>`value` | Syntax: `.add(<option>,<value>)`<br>Alias of `.set()`
+[.remove()](#examples-remove) | `option` | Syntax: `.remove(<option>)`<br>Alias of `.unset()`
 
 #### Instance methods are chainable
 With the obvious exception of the `.get()` (which returns the requested option value) all instance methods are chainable.
@@ -146,7 +157,9 @@ validators | `object` | See `validators` above (under [Static API Parameters](#s
 
 <a name="examples"></a>
 ## Examples
+Check out the sample code for each of the core API methods.
 
+<a name="examples-set"></a><a name="examples-get"></a>
 #### .set()/.get()
 ```js
 var optionsApi = require('options-api');
@@ -165,6 +178,13 @@ option1: value1
 option2: undefined
 ```
 
+[Back to Core API](#core-api)
+
+<a name="examples-add"></a>
+### .add()
+Alias of [.set()](#examples-set)
+
+<a name="examples-unset"></a>
 #### .unset()
 ```js
 var optionsApi = require('options-api');
@@ -182,6 +202,15 @@ Output:
 option1: undefined
 ```
 
+[Back to Core API](#core-api)
+
+<a name="examples-remove"></a>
+### .remove()
+Alias of [.unset()](#examples-unset)
+
+[Back to Core API](#core-api)
+
+<a name="examples-config"></a>
 #### .config()
 ```js
 var optionsApi = require('options-api');
@@ -203,6 +232,9 @@ option1: value1
 opiion2: value2
 ```
 
+[Back to Core API](#core-api)
+
+<a name="examples-enable"></a><a name="examples-disable"></a>
 #### .enable()/.disable()
 ```js
 var optionsApi = require('options-api');
@@ -222,6 +254,9 @@ option1: true
 option2: false
 ```
 
+[Back to Core API](#core-api)
+
+<a name="examples-defaults"></a>
 #### .defaults()
 ```js
 var optionsApi = require('options-api');
@@ -243,6 +278,9 @@ option1: value1
 opiion2: value2
 ```
 
+[Back to Core API](#core-api)
+
+<a name="examples-validators"></a>
 #### .validators()
 ```js
 var optionsApi = require('options-api');
@@ -274,6 +312,9 @@ InvalidOption: "0" is not a valid value for the "option1" option
     at Object.set ...
 ```
 
+[Back to Core API](#core-api)
+
+<a name="examples-reset"></a>
 #### .reset()
 ```js
 var optionsApi = require('options-api');
@@ -300,7 +341,28 @@ option1: value1
 opiion2: value2
 ```
 
-[Back to Top](#top)
+[Back to Core API](#core-api)
+
+<a name="examples-list"></a>
+#### .list()
+```js
+var optionsApi = require('options-api');
+var instance = optionsApi.create();
+
+instance.defaults({
+  option1: 'default value1',
+  option2: 'default value2'
+});
+
+console.log(instance.list());
+```
+
+Output:
+
+```
+{ option1: 'default value1', option2: 'default value2' }
+```
+[Back to Core API](#core-api)
 
 <a name="unit-testing"></a>
 ## Unit Testing
