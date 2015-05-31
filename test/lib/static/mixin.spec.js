@@ -38,7 +38,11 @@ describe('optionsApi.mixin()', function() {
       expect(this.instance).itself.to.respondTo('defaults');
       expect(this.instance).itself.to.respondTo('validators');
       expect(this.instance).itself.to.respondTo('set');
-      expect(this.instance).itself.to.respondTo('get');
+      expect(this.instance).itself.to.respondTo('enable');
+      expect(this.instance).itself.to.respondTo('disable');
+      expect(this.instance).itself.to.respondTo('add');
+      expect(this.instance).itself.to.respondTo('unset');
+      expect(this.instance).itself.to.respondTo('config');
     });
 
   });
