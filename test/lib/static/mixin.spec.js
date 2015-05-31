@@ -45,6 +45,16 @@ describe('optionsApi.mixin()', function() {
       expect(this.instance).itself.to.respondTo('config');
     });
 
+    it('should return object with convenience aliases', function () {
+      expect(this.instance).to.itself.to.respondTo('get');
+      expect(this.instance).to.itself.to.respondTo('add');
+      expect(this.instance).to.itself.to.respondTo('remove');
+
+      expect(this.instance.get).to.equal(this.instance.set);
+      expect(this.instance.add).to.equal(this.instance.set);
+      expect(this.instance.remove).to.equal(this.instance.unset);
+    });
+
   });
 
   describe('with defaults', function() {
