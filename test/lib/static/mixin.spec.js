@@ -43,6 +43,7 @@ describe('optionsApi.mixin()', function() {
       expect(this.instance).itself.to.respondTo('add');
       expect(this.instance).itself.to.respondTo('unset');
       expect(this.instance).itself.to.respondTo('config');
+      expect(this.instance).itself.to.respondTo('list');
     });
 
     it('should return object with convenience aliases', function () {
