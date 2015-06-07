@@ -8,6 +8,10 @@
     "cover": "istanbul cover node_modules/.bin/_mocha -- --reporter dot",
     "lint": "eslint index.js lib test"
   },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/AgentiaSystems/options-api.git"
@@ -31,6 +35,7 @@
     "eslint": "^0.21.2",
     "istanbul": "^0.3.14",
     "mocha": "^2.2.5",
+    "pre-commit": "^1.0.7",
     "sinon": "^1.14.1",
     "sinon-chai": "^2.7.0"
   },
